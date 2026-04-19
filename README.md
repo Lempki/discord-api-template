@@ -1,6 +1,6 @@
 # discord-api-template
 
-This is a clean and minimal Python REST API template built with [FastAPI](https://fastapi.tiangolo.com/) and [Uvicorn](https://www.uvicorn.org/). It is designed to be used as a starting point for Discord companion API services — standalone HTTP backends that Discord bots call over the network instead of bundling heavy dependencies locally.
+This is a clean and minimal Python REST API template built with [FastAPI](https://fastapi.tiangolo.com/) and [Uvicorn](https://www.uvicorn.org/). It is designed to be used as a starting point for Discord companion API services, standalone HTTP backends that Discord bots call over the network instead of bundling heavy dependencies locally.
 
 ## Features
 
@@ -10,12 +10,12 @@ This is a clean and minimal Python REST API template built with [FastAPI](https:
 * Configuration via environment variables using `pydantic-settings`. No values are hardcoded.
 * Structured JSON logging with a configurable log level.
 * `pyproject.toml` with the `hatchling` build backend and pinned dependency ranges.
-* `Dockerfile` and `docker-compose.yml` for containerised deployment.
+* `Dockerfile` and `docker-compose.yml` for containerized deployment.
 * A test suite with `pytest` covering health, auth rejection, and a template endpoint.
 
 ## Prerequisites
 
-* [Docker](https://docs.docker.com/get-docker/) and Docker Compose for containerised setup.
+* [Docker](https://docs.docker.com/get-docker/) and Docker Compose for containerized setup.
 
 Running without Docker requires Python 3.12 or newer.
 
@@ -72,7 +72,7 @@ discord-api-template/
 
 ## Creating a new API from this template
 
-Use the GitHub template button to create a new repository based on this project. Then follow these steps to customise it:
+Use the GitHub template button to create a new repository based on this project. Then follow these steps to customize it:
 
 1. **Rename the package.** In `pyproject.toml`, change the project `name` and the `packages` path under `[tool.hatch.build.targets.wheel]`. Rename the `src/api_template/` directory to match (e.g. `src/media_api/`). Update the import paths in all source files and in `Dockerfile`.
 
@@ -127,6 +127,7 @@ The following APIs were built from this template and can serve as fuller impleme
 | Service | Description |
 |---|---|
 | [discord-api-media](https://github.com/Lempki/discord-api-media) | Resolves YouTube and SoundCloud track metadata and stream URLs. |
-| [discord-api-tts](https://github.com/Lempki/discord-api-tts) | Generates Morshu TTS audio and video from text. |
 | [discord-api-scraper](https://github.com/Lempki/discord-api-scraper) | Scrapes structured data from external websites. |
 | [discord-api-scheduler](https://github.com/Lempki/discord-api-scheduler) | Schedules persistent reminders delivered via Discord webhooks. |
+| [discord-api-morshu](https://github.com/Lempki/discord-api-morshu) | Generates Morshu TTS audio and video from text. |
+
