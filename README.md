@@ -21,28 +21,46 @@ Running without Docker requires Python 3.12 or newer.
 
 ## Setup
 
-Copy the environment template and fill in the required values:
+You can use the included setup script to prepare the project in a single step.
 
-```bash
-cp .env.example .env
+On Windows, run the following command:
+
+```
+setup.bat
 ```
 
-Then start the service:
+On macOS or Linux, run the following commands:
 
-```bash
-docker-compose up --build
+```
+chmod +x setup.sh
+./setup.sh
 ```
 
-The API listens on port `8000` by default.
+The script creates a `.venv` virtual environment if one does not already exist. It installs all dependencies and copies `.env.template` to `.env` on the first run. You must edit `.env` and set `DISCORD_API_SECRET` before starting the API.
 
-To run without Docker:
+If you prefer to perform the setup manually, follow these steps:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
+cp .env.template .env
+# Edit .env and set DISCORD_API_SECRET and other values as needed.
 uvicorn api_template.main:app --reload
 ```
+
+### Docker
+
+Alternatively, you can run the API as a Docker container.
+
+1. Copy `.env.template` to `.env` and set `DISCORD_API_SECRET`.
+2. Build and start the container:
+
+   ```
+   docker-compose up --build
+   ```
+
+The API listens on port `8000` by default.
 
 ## Configuration
 
@@ -67,7 +85,9 @@ discord-api-template/
 ├── Dockerfile
 ├── docker-compose.yml
 ├── pyproject.toml
-└── .env.example
+├── setup.bat           # Windows setup script.
+├── setup.sh            # macOS and Linux setup script.
+└── .env.template       # Template for environment variables.
 ```
 
 ## Creating a new API from this template
@@ -78,7 +98,7 @@ Use the GitHub template button to create a new repository based on this project.
 
 2. **Add your dependencies.** Edit the `dependencies` list in `pyproject.toml`.
 
-3. **Add configuration variables.** Extend the `Settings` class in `config.py` and document new variables in `.env.example`.
+3. **Add configuration variables.** Extend the `Settings` class in `config.py` and document new variables in `.env.template`.
 
 4. **Add startup and shutdown logic.** Use the `lifespan` context manager in `main.py` to load models, open connections, or perform any one-time initialisation.
 
