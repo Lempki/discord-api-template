@@ -34,3 +34,14 @@ def test_echo():
     response = client.post("/template/echo", json={"text": "hello"}, headers=AUTH)
     assert response.status_code == 200
     assert response.json()["text"] == "hello"
+
+
+def test_health_includes_version():
+    response = client.get("/health")
+    assert "version" in response.json()
+
+
+def test_echo_missing_body():
+    # No JSON body at all → Pydantic validation error.
+    response = client.post("/template/echo", headers=AUTH)
+    assert response.status_code == 422
